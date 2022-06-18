@@ -57,7 +57,7 @@
         :key="index" :prop="col.prop"
         :label="col.label" :min-width="col.width" align="center">
       <template v-slot="slotProps">
-        <p v-if='slotProps.row[col.prop]' :row='slotProps.row'>{{slotProps.row[col.prop]}}</p>
+        <p v-if='slotProps.row[col.prop]' :row='slotProps.row' v-html='slotProps.row[col.prop]'></p>
         <p v-else>-</p>
       </template>
       </el-table-column>
@@ -73,9 +73,9 @@ import { reactive } from 'vue'
 export default {
   name: 'HomeView',
   setup () {
-    function cellStyle ({ row, column, rowIndex, columnIndex }) {
-      return 'customClass'
-    }
+    // function cellStyle ({ row, column, rowIndex, columnIndex }) {
+    //   return 'customClass'
+    // }
     const cols = reactive([
       { prop: 'id', label: '序', width: 40 },
       { prop: 'knowledge', label: '調整項目', width: 100 },
@@ -99,7 +99,7 @@ export default {
       ]
     })
     return {
-      cellStyle,
+      // cellStyle,
       fakeData,
       cols
     }
