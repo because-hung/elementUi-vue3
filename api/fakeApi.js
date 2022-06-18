@@ -25,7 +25,7 @@ export const fetchFakeApi = () => {
             id: 3,
             content: '新增 aaaa 006 <br/> 新增 [000999]',
             operate: '新增',
-            knowledge: '新增用戶',
+            knowledge: '',
             account: 'admin',
             time: '201314123',
             ip: '120.19.20.8'
@@ -42,7 +42,7 @@ export const fetchFakeApi = () => {
           {
             id: 5,
             content: '新增 aaaa 006 <br/> 新增 [000999]',
-            operate: '新增',
+            operate: '',
             knowledge: '新增用戶',
             account: 'admin',
             time: '201314123',
@@ -55,7 +55,7 @@ export const fetchFakeApi = () => {
             knowledge: '新增用戶',
             account: 'admin',
             time: '201314123',
-            ip: '120.19.20.8'
+            ip: ''
           },
           {
             id: 7,

@@ -15,12 +15,13 @@
           start-placeholder="开始日期"
           end-placeholder="结束日期"
           :default-time="['12:00:00']"
+           style="max-width:100px"
         >
         </el-date-picker>
       </div>
       <div class="page-item">
         <h2>date</h2>
-        <el-input v-model="a" placeholder="Please input" />
+        <el-input v-model="a" placeholder="Please input" style="max-width:100px" />
       </div>
       <div class="page-item">
         <h2>work</h2>
@@ -38,21 +39,22 @@
       </div>
        <div class="page-item">
         <h2>ip</h2>
-        <el-input v-model="a" placeholder="Please input" />
+        <el-input v-model="a" placeholder="Please input" style="max-width:100px" />
       </div>
        <div class="page-item">
         <h2>content</h2>
-        <el-input v-model="a" placeholder="Please input" />
+        <el-input v-model="a" placeholder="Please input" style="max-width:100px" />
       </div>
        <div class="page-item">
         <h2>account</h2>
-        <el-input v-model="a" placeholder="Please input" />
+        <el-input v-model="a" placeholder="Please input" style="max-width:100px" />
       </div>
        <div class="page-item btn">
-       <el-button :icon="el-icon-search" class="btn" type="primary"></el-button>
+       <el-button @click="getApi()" :icon="el-icon-search" class="btn" type="primary"></el-button>
       </div>
     </header>
-    <el-table class="tabletr" :data="fakeData.column" border style="width: 100%;" :header-cell-style="{background: 'lightgray',borderColor: 'black'}" :cell-style="{borderColor: 'black'}" v-for='(item, index) in fakeData.column' :key='index'>
+    <div class="container">
+    <el-table class="tabletr" :data="fakeData.column" border :header-cell-style="{background: 'lightgray',borderColor: 'black'}" :cell-style="{borderColor: 'black'}">
       <el-table-column  v-for="(col, index) in cols"
         :key="index" :prop="col.prop"
         :label="col.label" :min-width="col.width" align="center">
@@ -62,6 +64,7 @@
       </template>
       </el-table-column>
   </el-table>
+  </div>
   <ul v-for='(item, i) in fakeData.column' :key='i'>
     <li v-html='item.content'></li>
   </ul>
@@ -70,6 +73,7 @@
 
 <script>
 import { reactive } from 'vue'
+import { fetchFakeApi } from '../../api/fakeApi'
 export default {
   name: 'HomeView',
   setup () {
@@ -87,39 +91,40 @@ export default {
     ])
     const fakeData = reactive({
       column: [
-        {
-          id: '1',
-          content: '新增 aaaa 006 <br/> 新增 [000999]',
-          operate: '新增',
-          knowledge: '新增用戶',
-          account: 'admin',
-          time: '201314123',
-          ip: '120.19.20.8'
-        }
       ]
     })
+    function getApi () {
+      fetchFakeApi().then(res => {
+        console.log(res.data.infos)
+        fakeData.column = res.data.infos
+        fakeData.column.reverse()
+      })
+    }
     return {
       // cellStyle,
       fakeData,
-      cols
+      cols,
+      getApi,
+      fetchFakeApi
     }
   }
 }
 </script>
 <style lang="scss" scoped>
 .home{
-  padding: 40px;
+  padding: 60px;
 
 }
 header{
   padding: 30px;
   background: lightgray;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
   .page-item{
-    margin: 0px 10px;
+    margin: 10px 10px;
     display: flex;
     align-items: end;
     h2{
@@ -130,11 +135,11 @@ header{
   align-self: end;
   }
 }
-.customClass {
-background: #000;
-}
 .tabletr{
   border:1px solid black;
+}
+.container{
+  padding: 40px;
 }
 // .el-table{
 //   --el-table-border-color: black;
