@@ -24,3 +24,24 @@
  </el-table-column>
  <div slot="empty"><span>暫無數據</span></div>
 </el-table>
+
+    <template v-slot="slotProps">
+        <p v-if='!slotProps.row.id'>{{slotProps.row.id}}</p>
+        <p v-else>456</p>
+      </template>
+
+      <el-table class="tabletr" :data="fakeData.column" border style="width: 100%;" :header-cell-style="{background: 'lightgray',borderColor: 'black'}" :cell-style="{borderColor: 'black'}" v-for='(item, index) in fakeData.column' :key='index'>
+      <el-table-column prop='id' label="序" min-width="40" align="center">
+      <template v-slot="slotProps">
+        <p v-if='!slotProps.row.id'>{{slotProps.row.id}}</p>
+        <p v-else>456</p>
+      </template>
+      </el-table-column>
+      <el-table-column prop='id' label="序" min-width="40" align="center" />
+      <el-table-column prop='knowledge' label="調整項目" min-width="100" align="center"  />
+      <el-table-column prop='operate' label="動作" min-width="150" align="center"  />
+      <el-table-column prop='content' label="內容" min-width="300" align="center"  />
+      <el-table-column prop='account' label="帳戶" min-width="180" align="center"  />
+      <el-table-column prop='time' label="時間" min-width="180" align="center"  />
+      <el-table-column prop='ip' label="IP"  min-width="180" align="center"  />
+  </el-table>

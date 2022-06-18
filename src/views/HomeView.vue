@@ -53,19 +53,14 @@
       </div>
     </header>
     <el-table class="tabletr" :data="fakeData.column" border style="width: 100%;" :header-cell-style="{background: 'lightgray',borderColor: 'black'}" :cell-style="{borderColor: 'black'}" v-for='(item, index) in fakeData.column' :key='index'>
-    <template v-if='item.id === 1'>
-       <el-table-column label="序" min-width="40" align="center" prop="-"/>
-    </template>
-    <template v-else>
-          <el-table-column prop='id' label="序" min-width="40" align="center" />
-    </template>
-    <el-table-column prop='id' label="序" min-width="40" align="center" />
-    <el-table-column prop='knowledge' label="調整項目" min-width="100" align="center"  />
-    <el-table-column prop='operate' label="動作" min-width="150" align="center"  />
-    <el-table-column prop='content' label="內容" min-width="300" align="center"  />
-    <el-table-column prop='account' label="帳戶" min-width="180" align="center"  />
-    <el-table-column prop='time' label="時間" min-width="180" align="center"  />
-    <el-table-column prop='ip' label="IP"  min-width="180" align="center"  />
+      <el-table-column  v-for="(col, index) in cols"
+        :key="index" :prop="col.prop"
+        :label="col.label" :min-width="col.width" align="center">
+      <template v-slot="slotProps">
+        <p v-if='slotProps.row[col.prop]' :row='slotProps.row'>{{slotProps.row[col.prop]}}</p>
+        <p v-else>-</p>
+      </template>
+      </el-table-column>
   </el-table>
   <ul v-for='(item, i) in fakeData.column' :key='i'>
     <li v-html='item.content'></li>
@@ -81,10 +76,19 @@ export default {
     function cellStyle ({ row, column, rowIndex, columnIndex }) {
       return 'customClass'
     }
+    const cols = reactive([
+      { prop: 'id', label: '序', width: 40 },
+      { prop: 'knowledge', label: '調整項目', width: 100 },
+      { prop: 'operate', label: '動作', width: 150 },
+      { prop: 'content', label: '內容', width: 300 },
+      { prop: 'account', label: '帳戶', width: 180 },
+      { prop: 'time', label: '時間', width: 180 },
+      { prop: 'ip', label: 'IP', width: 180 }
+    ])
     const fakeData = reactive({
       column: [
         {
-          id: 1,
+          id: '1',
           content: '新增 aaaa 006 <br/> 新增 [000999]',
           operate: '新增',
           knowledge: '新增用戶',
@@ -96,7 +100,8 @@ export default {
     })
     return {
       cellStyle,
-      fakeData
+      fakeData,
+      cols
     }
   }
 }
