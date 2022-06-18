@@ -5,7 +5,7 @@ export const fetchFakeApi = () => {
         infos: [
           {
             id: 1,
-            content: '新增 aaaa 006 <br/> 新增 [000999]',
+            content: '新增 <span class="appd"> aaaa 006 </span> <br/> 新增 <span class="appX"> [000999] </span>',
             operate: '新增',
             knowledge: '新增用戶',
             account: 'admin',
@@ -14,7 +14,7 @@ export const fetchFakeApi = () => {
           },
           {
             id: 2,
-            content: '新增 aaaa 006 <br/> 新增 [000999]',
+            content: '新增 <span class="appd"> aaaa 006 </span> <br/> 新增 <span class="appX"> [000999] </span>',
             operate: '新增',
             knowledge: '新增用戶',
             account: 'admin',
@@ -23,7 +23,7 @@ export const fetchFakeApi = () => {
           },
           {
             id: 3,
-            content: '新增 aaaa 006 <br/> 新增 [000999]',
+            content: '新增 <span class="appd"> aaaa 006 </span> <br/> 新增 <span class="appX"> [000999] </span>',
             operate: '新增',
             knowledge: '',
             account: 'admin',
@@ -32,7 +32,7 @@ export const fetchFakeApi = () => {
           },
           {
             id: 4,
-            content: '新增 aaaa 006 <br/> 新增 [000999]',
+            content: '新增 <span class="appd"> aaaa 006 </span> <br/> 新增 <span class="appX"> [000999] </span>',
             operate: '新增',
             knowledge: '新增用戶',
             account: 'admin',
@@ -41,7 +41,7 @@ export const fetchFakeApi = () => {
           },
           {
             id: 5,
-            content: '新增 aaaa 006 <br/> 新增 [000999]',
+            content: '新增 <span class="appd"> aaaa 006 </span> <br/> 新增 <span class="appX"> [000999] </span>',
             operate: '',
             knowledge: '新增用戶',
             account: 'admin',
@@ -50,7 +50,7 @@ export const fetchFakeApi = () => {
           },
           {
             id: 6,
-            content: '新增 aaaa 006 <br/> 新增 [000999]',
+            content: '新增 <span class="appd"> aaaa 006 </span> <br/> 新增 <span class="appX"> [000999] </span>',
             operate: '新增',
             knowledge: '新增用戶',
             account: 'admin',
@@ -59,7 +59,7 @@ export const fetchFakeApi = () => {
           },
           {
             id: 7,
-            content: '新增 aaaa 006 <br/> 新增 [000999]',
+            content: '新增 <span class="appd"> aaaa 006 </span> <br/> 新增 <span class="appX"> [000999] </span>',
             operate: '新增',
             knowledge: '新增用戶',
             account: 'admin',
@@ -68,7 +68,7 @@ export const fetchFakeApi = () => {
           },
           {
             id: 8,
-            content: '新增 aaaa 006 <br/> 新增 [000999]',
+            content: '新增 <span class="appd"> aaaa 006 </span> <br/> 新增 <span class="appX"> [000999] </span>',
             operate: '新增',
             knowledge: '新增用戶',
             account: 'admin',
@@ -77,7 +77,7 @@ export const fetchFakeApi = () => {
           },
           {
             id: 9,
-            content: '新增 aaaa 006 <br/> 新增 [000999]',
+            content: '新增 <span class="appd"> aaaa 006 </span> <br/> 新增 <span class="appX"> [000999] </span>',
             operate: '新增',
             knowledge: '新增用戶',
             account: 'admin',

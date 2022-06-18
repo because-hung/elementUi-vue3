@@ -1,0 +1,53 @@
+<script>
+import {
+  selectphoneAll
+} from "@/api/files";//獲取數據的接口
+    export default {
+        name: "phoneList",
+        data(){
+            let tableDataAll = [];
+            return{
+                tableData:[],
+                // 是否加載數據
+                loading:true,
+                currentPage:1,
+                pagesize:10,
+                files_count:5,
+                fileList:[],
+                searchFile:"",
+                
+            };
+        },
+         created: function() {
+    this.hadleGetFilesListApi();
+  },
+    methods:{
+    //分頁 初始頁currentPage、初始每頁數據數pagesize和數據testpage--->控制每頁幾條
+    handleSizeChange:function(size){
+        this.pagesize = size;
+        this.hadleGetFilesListApi();
+        console.log(this.pagesize)
+        console.log(this.hadleGetFilesListApi())
+    },
+    // 控制頁面的切換
+    handleCurrentChange: function(currentPage) {
+        this.currentPage = currentPage;
+        // console.log(currentPage)
+        this.hadleGetFilesListApi();
+    },
+    //對所有數據進行分頁處理 發送請求
+    hadleGetFilesListApi() {
+      selectphoneAll(this.currentPage, this.pagesize)
+        .then(res => {
+          console.log("111"+res);
+          this.tableData = res.data.filesInfo; // tableData = res.data.info
+          console.log("3333"+this.tableData);
+          this.files_count = res.data.files_count;
+          this.tableDateAll = res.data.filesInfo;
+          this.loading = false;
+        })
+        .catch({});
+    }
+    }
+}
+</script>

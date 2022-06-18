@@ -65,14 +65,23 @@
       </el-table-column>
   </el-table>
   </div>
-  <ul v-for='(item, i) in fakeData.column' :key='i'>
-    <li v-html='item.content'></li>
-  </ul>
+   <el-pagination
+      v-model:currentPage="currentPage"
+      v-model:page-size="pageSize"
+      :page-sizes="[3]"
+      :small="small"
+      :disabled="disabled"
+      :background="background"
+      layout="sizes, prev, pager, next"
+      :total="pagLeng"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
   </div>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { fetchFakeApi } from '../../api/fakeApi'
 export default {
   name: 'HomeView',
@@ -80,6 +89,11 @@ export default {
     // function cellStyle ({ row, column, rowIndex, columnIndex }) {
     //   return 'customClass'
     // }
+    const currentPage = ref(5)
+    const pageSize = ref(100)
+    const small = ref(false)
+    const background = ref(false)
+    const disabled = ref(false)
     const cols = reactive([
       { prop: 'id', label: '序', width: 40 },
       { prop: 'knowledge', label: '調整項目', width: 100 },
@@ -93,19 +107,54 @@ export default {
       column: [
       ]
     })
+    const pagLeng = ref(0)
     function getApi () {
       fetchFakeApi().then(res => {
         console.log(res.data.infos)
         fakeData.column = res.data.infos
         fakeData.column.reverse()
+        pagLeng.value = fakeData.column.length
       })
+    }
+
+    function getApi2 () {
+      fetchFakeApi().then(res => {
+        console.log(res.data.infos)
+        fakeData.column = res.data.infos
+        fakeData.column.pop()
+        pagLeng.value = fakeData.column.length
+      })
+    }
+    // page
+
+    function handleSizeChange (size) {
+      pageSize.value = size
+      hadleGetFilesListApi()
+      console.log(pageSize.value)
+      console.log(hadleGetFilesListApi())
+    }
+    function handleCurrentChange (currentPage) {
+      currentPage.value = currentPage
+      // console.log(currentPage)
+      hadleGetFilesListApi()
+    }
+    function hadleGetFilesListApi () {
+      getApi2()
     }
     return {
       // cellStyle,
       fakeData,
       cols,
       getApi,
-      fetchFakeApi
+      fetchFakeApi,
+      pagLeng,
+      currentPage,
+      pageSize,
+      small,
+      background,
+      disabled,
+      handleCurrentChange,
+      handleSizeChange
     }
   }
 }
@@ -124,7 +173,7 @@ header{
   align-items: center;
   margin-bottom: 20px;
   .page-item{
-    margin: 10px 10px;
+    margin: 10px;
     display: flex;
     align-items: end;
     h2{
@@ -137,10 +186,18 @@ header{
 }
 .tabletr{
   border:1px solid black;
+
 }
 .container{
   padding: 40px;
 }
+::v-deep .appd{
+  color:red;
+}
+::v-deep .appX{
+  color:blue;
+}
+
 // .el-table{
 //   --el-table-border-color: black;
 // }
