@@ -1,0 +1,26 @@
+ 
+ <el-table
+ :data="tableData"
+ stripe
+ @selection-change="handleSelectionChange"
+ style="width: 100%"
+>
+ <el-table-column v-if="isCheckbox" type="selection" width="50">
+ </el-table-column>
+ <el-table-column
+   v-for="column in tableHeader"
+   :key="column.label"
+   :label="column.label"
+   :width="column.width"
+ >
+   <template slot-scope="scope">
+     <span>{{ scope.row[column.prop] }}</span>
+   </template>
+ </el-table-column>
+ <el-table-column label="操作" v-if="isOperate">
+   <template slot-scope="scope">
+     <slot :row="scope.row" :index="scope.$index"></slot>
+   </template>
+ </el-table-column>
+ <div slot="empty"><span>暫無數據</span></div>
+</el-table>
