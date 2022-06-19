@@ -134,10 +134,10 @@ export default {
     })
     const totalCount = ref(0)
     const cols = reactive([
-      { prop: 'id', label: '序', width: '100px', align: 'center' },
+      { prop: 'id', label: '序', width: '40px', align: 'center' },
       { prop: 'knowledge', label: '調整項目', width: '100px', align: 'center' },
       { prop: 'operate', label: '動作', width: '100px', align: 'center' },
-      { prop: 'content', label: '內容', width: '100px', align: 'left' },
+      { prop: 'content', label: '內容', width: '150px', align: 'left' },
       { prop: 'account', label: '操作者', width: '100px', align: 'center' },
       { prop: 'time', label: '時間', width: '100px', align: 'center' },
       { prop: 'ip', label: 'IP', width: '100px', align: 'center' }
