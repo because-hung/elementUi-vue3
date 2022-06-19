@@ -134,13 +134,13 @@ export default {
     })
     const totalCount = ref(0)
     const cols = reactive([
-      { prop: 'id', label: '序', width: '40px', align: 'center' },
-      { prop: 'knowledge', label: '調整項目', width: '100px', align: 'center' },
-      { prop: 'operate', label: '動作', width: '100px', align: 'center' },
-      { prop: 'content', label: '內容', width: '150px', align: 'left' },
-      { prop: 'account', label: '操作者', width: '100px', align: 'center' },
-      { prop: 'time', label: '時間', width: '100px', align: 'center' },
-      { prop: 'ip', label: 'IP', width: '100px', align: 'center' }
+      { prop: 'id', label: '序', width: '40', align: 'center' },
+      { prop: 'knowledge', label: '調整項目', width: '100', align: 'center' },
+      { prop: 'operate', label: '動作', width: '100', align: 'center' },
+      { prop: 'content', label: '內容', width: '150', align: 'left' },
+      { prop: 'account', label: '操作者', width: '100', align: 'center' },
+      { prop: 'time', label: '時間', width: '100', align: 'center' },
+      { prop: 'ip', label: 'IP', width: '100', align: 'center' }
     ])
     const fakeData = reactive({
       column: []
@@ -253,26 +253,26 @@ header {
   margin-top: 20px;
   // overflow-x: auto; ele ui 原本就有
 }
-::v-deep .appd {
+:deep(.appd) {
   color: red;
 }
-::v-deep .appX {
+:deep(.appX) {
   color: blue;
 }
 .pag {
   display: flex;
   justify-content: space-between;
 }
-// ::v-deep .el-input__wrapper{
+// :deep(.el-input__wrapper){
 // padding: 3px 11px;
 // }
 
-::v-deep .el-input__inner {
+:deep(.el-input__inner) {
   font-size: 16px;
   height: 40px;
   // border-radius: 50px;
 }
-::v-deep .el-input .el-input__icon {
+:deep(.el-input .el-input__icon) {
   position: absolute;
   right: 10px;
   top: 8px;
