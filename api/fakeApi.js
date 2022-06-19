@@ -84,7 +84,8 @@ export const fetchFakeApi = () => {
             time: '201314123',
             ip: '120.19.20.8'
           }
-        ]
+        ],
+        totalCount: 9
       }
     }
     setTimeout(() => {
