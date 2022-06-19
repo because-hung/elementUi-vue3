@@ -4,5 +4,12 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import router from './router'
 import store from './store'
+import zhTW from 'element-plus/es/locale/lang/zh-tw'
 
-createApp(App).use(ElementPlus).use(store).use(router).mount('#app')
+const app = createApp(App)
+
+app.use(ElementPlus, {
+  locale: zhTW
+})
+
+app.use(store).use(router).mount('#app')

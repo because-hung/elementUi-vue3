@@ -13,16 +13,15 @@
           <el-date-picker
         v-model="requestData.StartTime"
         placeholder="年 / 月 / 日"
-        :size="size"
-        style="max-width:150px"
+        :style="{'max-width': '150px', height:'40px'}"
       />
       <div class="lineBox"><span></span></div>
         <el-date-picker
         v-model="requestData.EndTime"
         type="date"
         placeholder="年 / 月 / 日"
-        :default-time="defaultTime"
-        style="max-width:150px"
+        size='big'
+        :style="{'max-width': '150px', height:'40px'}"
       />
       </div>
       </div>
@@ -39,19 +38,19 @@
         </el-select>
       </div>
        <div class="inputItem">
-        <h2>IP</h2>
-        <el-input v-model="requestData.IP" placeholder="精準搜尋" style="max-width:150px" />
+        <h2>內容關鍵字</h2>
+        <el-input v-model="requestData.IP" size="big" placeholder="精準搜尋" />
       </div>
        <div class="inputItem">
-        <h2>內容關鍵字</h2>
-        <el-input v-model="requestData.Content" placeholder="模糊搜尋" style="max-width:150px" />
+        <h2>IP</h2>
+        <el-input class="en" v-model="requestData.Content" placeholder="模糊搜尋" style="max-width:150px" />
       </div>
        <div class="inputItem">
         <h2>後台帳號</h2>
+        <div>
         <el-input v-model="requestData.Account" placeholder="模糊搜尋" style="max-width:150px" />
-      </div>
-       <div class="inputItem btn">
        <el-button @click="getApi()" :icon="el-icon-search" class="btn" type="primary"></el-button>
+      </div>
       </div>
     </header>
     <div class="container">
@@ -69,9 +68,8 @@
   <div class="pag">
    <el-pagination
       v-model:currentPage="requestData.PageIndex"
-      v-model:page-size="requestData.PageSize"
-      :page-sizes="[3,4]"
-      layout="sizes, prev, pager, next"
+      :page-sizes="[10, 20, 30]"
+      layout=" sizes, prev, pager, next"
       :total="totalCount"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -141,6 +139,7 @@ export default {
     // page
 
     function handleSizeChange (size) {
+      requestData.PageSize = size
       console.log('testData', requestData)
       hadleGetFilesListApi(size)
       // getApi()
@@ -177,18 +176,25 @@ header{
   background: lightgray;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 
   .inputItem{
-    margin: 10px;
+    margin-right: 60px;
     .time{
     display: flex;
+    flex-wrap: wrap;
   }
     h2{
       text-align: left;
       margin: 5px 0px;
+    }
+    .btn{
+      margin-left: 10px;
+      transform: translateY(-2px);
+    }
+    .en{
+      transform: translateY(2px);
     }
   }
   .lineBox{
@@ -203,9 +209,9 @@ header{
     background-color: gray;
     margin: 0px 5px;
     }
-  .btn{
-  align-self: end;
-  }
+  // .btn{
+  // align-self: end;
+  // }
 }
 .tabletr{
   border:1px solid black;
@@ -225,9 +231,14 @@ header{
     display: flex;
     justify-content: space-between;
 }
+// ::v-deep .el-input__wrapper{
+// padding: 3px 11px;
+// }
 
 ::v-deep .el-input__inner{
-  font-size: 18px;
+  font-size: 16px;
+  height: 40px;
+  // border-radius: 50px;
 }
 ::v-deep .el-input .el-input__icon{
   position: absolute;
