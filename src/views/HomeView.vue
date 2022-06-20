@@ -1,5 +1,10 @@
 <template>
   <div class="home">
+    <button class="job" @click="setID(1)">管理員</button>
+    <button class="job" @click="setID(2)">客服</button>
+    <button class="job" @click="setID(3)">班長</button>
+    <button class="job" @click="setID(4)">直播</button>
+    <button @click="goTestPage()">enter go</button>
     <el-tabs
       v-model="activeName"
       type="card"
@@ -114,7 +119,8 @@
 </template>
 
 <script>
-import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { reactive, ref, onMounted } from 'vue'
 import { fetchFakeApi } from '../../api/fakeApi'
 export default {
   name: 'HomeView',
@@ -122,11 +128,20 @@ export default {
     // function cellStyle ({ row, column, rowIndex, columnIndex }) {
     //   return 'customClass'
     // }
+    const router = useRouter()
+    const timeNow = new Date(Date.now())
+    const dateValue1 = timeNow.toDateString()
+    console.log('date1', dateValue1)
+
+    const weekOfdays = timeNow
+    weekOfdays.setDate(timeNow.getDate() - 6)
+    const dateValue2 = weekOfdays.toDateString()
+    console.log('date2', dateValue2)
     const requestData = reactive({
       PageIndex: 1,
       PageSize: 10,
-      StartTime: '',
-      EndTime: '',
+      StartTime: dateValue2,
+      EndTime: dateValue1,
       SystemActionType: -1,
       IP: '',
       Content: '',
@@ -185,6 +200,16 @@ export default {
     function hadleGetFilesListApi (num) {
       getApi2(num)
     }
+    onMounted(() => {
+      getApi()
+    })
+    function goTestPage () {
+      router.push('./testPage')
+    }
+    function setID (value) {
+      console.log(value)
+      localStorage.setItem('agentID', JSON.stringify(value))
+    }
     return {
       fakeData,
       cols,
@@ -194,7 +219,11 @@ export default {
       handleCurrentChange,
       handleSizeChange,
       requestData,
-      totalCount
+      totalCount,
+      dateValue1,
+      dateValue2,
+      goTestPage,
+      setID
     }
   }
 }
@@ -280,4 +309,8 @@ header {
 // .el-table{
 //   --el-table-border-color: black;
 // }
+.job{
+  width: 100px;
+  height: 50px;
+}
 </style>
