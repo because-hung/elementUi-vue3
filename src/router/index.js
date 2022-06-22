@@ -22,18 +22,18 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: testPage,
-    beforeEnter: (to, from) => {
-      const toke = JSON.parse(localStorage.getItem('agentID'))
-      console.log('agentO', toke)
-      // reject the navigation
-      if (toke === 1) {
-        return true
-      } else {
-        console.log('error')
-        return false
-      }
-    }
+    component: testPage
+    // beforeEnter: (to, from) => {
+    //   const toke = JSON.parse(localStorage.getItem('agentID'))
+    //   console.log('agentO', toke)
+    //   // reject the navigation
+    //   if (toke === 1) {
+    //     return true
+    //   } else {
+    //     console.log('error')
+    //     return false
+    //   }
+    // }
   }
 ]
 
