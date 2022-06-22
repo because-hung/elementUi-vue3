@@ -10,6 +10,10 @@
       </div>
     </div>
   </div>
+  <div class="outner">
+    <div class="boxG boxGA"></div>
+    <div class="boxG boxGB"></div>
+  </div>
   <ul class="menu">
     <li @click='getStatus(1)'>about<div  v-if='redStatus === 1' class="colbox"></div></li>
     <li @click='getStatus(2)'>home<div  v-if='redStatus === 2' class="colbox"></div></li>
@@ -65,6 +69,22 @@ export default {
 }
 li {
   list-style: none;
+}
+.outner{
+  display: grid;
+}
+.boxG{
+  width: 100%;
+  height: 200px;
+  margin: 10px;
+  background: red;
+
+}
+.boxGA{
+    grid-column: 1/2;
+}
+.boxGB{
+    grid-column: 3/4;
 }
 .menu {
   margin-top: 100px;
