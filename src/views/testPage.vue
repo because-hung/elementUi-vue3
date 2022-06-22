@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if='false' class="container">
     <div class="boxGroup">
       <div class="outter">
         <div class="box box1">A</div>
@@ -15,6 +15,31 @@
     <li @click='getStatus(2)'>home<div  v-if='redStatus === 2' class="colbox"></div></li>
     <li @click='getStatus(3)'>TTT<div  v-if='redStatus === 3' class="colbox"></div></li>
     <li @click='getStatus(4)'>CCC<div  v-if='redStatus === 4' class="colbox"></div></li>
+  </ul>
+   <ul class="menu">
+    <li @click='getStatus(1)'>about<div  v-if='redStatus === 1' class="colbox"></div></li>
+    <li @click='getStatus(2)'>home<div  v-if='redStatus === 2' class="colbox"></div></li>
+    <li @click='getStatus(3)'>TTT<div  v-if='redStatus === 3' class="colbox"></div></li>
+    <li @click='getStatus(4)'>CCC<div  v-if='redStatus === 4' class="colbox"></div></li>
+  </ul>
+   <ul class="menu">
+    <li @click='getStatus(1)'>about<div  v-if='redStatus === 1' class="colbox"></div></li>
+    <li @click='getStatus(2)'>home<div  v-if='redStatus === 2' class="colbox"></div></li>
+    <li @click='getStatus(3)'>TTT<div  v-if='redStatus === 3' class="colbox"></div></li>
+    <li @click='getStatus(4)'>CCC<div  v-if='redStatus === 4' class="colbox"></div></li>
+  </ul>
+   <ul class="menu">
+    <li @click='getStatus(1)'>about<div  v-if='redStatus === 1' class="colbox"></div></li>
+    <li @click='getStatus(2)'>home<div  v-if='redStatus === 2' class="colbox"></div></li>
+    <li @click='getStatus(3)'>TTT<div  v-if='redStatus === 3' class="colbox"></div></li>
+    <li @click='getStatus(4)'>CCC<div  v-if='redStatus === 4' class="colbox"></div></li>
+  </ul>
+  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur laboriosam at amet vel quo, sint nisi ut iure temporibus, atque totam? Ad quidem dolorem sint odio ab voluptatem. Maiores, consequatur. Inventore ipsum maxime accusantium animi dolor fuga expedita minus nam nemo odit esse delectus, ratione quas, voluptate odio adipisci! Atque, ut odit optio modi minima necessitatibus deserunt, adipisci, in alias vitae deleniti nemo consectetur accusamus. Voluptas officiis maiores explicabo voluptatem temporibus a, necessitatibus quas dolores esse pariatur ipsa magnam non ratione. Tenetur reprehenderit perferendis dicta! Quis, libero commodi delectus incidunt est quibusdam esse eveniet nulla, et rerum dolores accusantium quam! </p>
+  <ul class='testCol'>
+    <li> <img src="https://fakeimg.pl/100x100/">. </li>
+    <li> <img src="https://fakeimg.pl/100x100/">.</li>
+    <li> <img src="https://fakeimg.pl/100x100/">.</li>
+    <li> <img src="https://fakeimg.pl/100x100/">.</li>
   </ul>
 </template>
 <script>
@@ -90,5 +115,20 @@ li {
 }
 .box3 {
   width: 80%;
+}
+.testCol{
+  width: 100%;
+  padding: 20px 0px;
+  background: skyblue;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 20vh;
+  img{
+    width: 80%;
+    height: 80%;
+  }
 }
 </style>
