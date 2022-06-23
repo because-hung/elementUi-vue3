@@ -119,15 +119,18 @@
 </template>
 
 <script>
+import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { reactive, ref, onMounted } from 'vue'
 import { fetchFakeApi } from '../../api/fakeApi'
+import _ from 'lodash'
 export default {
   name: 'HomeView',
   setup () {
     // function cellStyle ({ row, column, rowIndex, columnIndex }) {
     //   return 'customClass'
     // }
+    const store = useStore()
     const router = useRouter()
     const timeNow = new Date(Date.now())
     const dateValue1 = timeNow.toDateString()
@@ -169,6 +172,10 @@ export default {
         fakeData.column.reverse()
         totalCount.value = res.data.totalCount
         pagLeng.value = fakeData.column.length
+        const firstNum = res.data.infos[0]
+        firstNum.createTime = 'testStateA'
+        console.log(firstNum)
+        store.commit('SETDATA', firstNum)
       })
     }
 
@@ -185,7 +192,6 @@ export default {
       })
     }
     // page
-
     function handleSizeChange (size) {
       requestData.PageSize = size
       console.log('testData', requestData)
@@ -210,6 +216,11 @@ export default {
       console.log(value)
       localStorage.setItem('agentID', JSON.stringify(value))
     }
+    // lodash
+    const range = _.range(1, 3) // [1, 2]
+    const random = _.random(0, 5) // an integer between 0 and 5
+    console.log(range)
+    console.log(random)
     return {
       fakeData,
       cols,
@@ -223,7 +234,8 @@ export default {
       dateValue1,
       dateValue2,
       goTestPage,
-      setID
+      setID,
+      store
     }
   }
 }

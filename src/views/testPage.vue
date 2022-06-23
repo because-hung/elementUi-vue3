@@ -47,13 +47,32 @@
   </ul>
 </template>
 <script>
-import { ref } from 'vue'
+import { useStore } from 'vuex'
+import { fetchFakeApi } from '../../api/fakeApi'
+import { reactive, ref, onMounted } from 'vue'
 export default {
   setup () {
+    const store = useStore()
+    const fakeData = reactive({
+      column: []
+    })
     const redStatus = ref(1)
     function getStatus (value) {
       redStatus.value = value
     }
+    function getApi () {
+      fetchFakeApi().then((res) => {
+        console.log(res.data.infos)
+        fakeData.column = res.data.infos
+        fakeData.column.reverse()
+        const firstNum = res.data.infos[0]
+        store.commit('SETDATA', firstNum)
+      })
+    }
+    onMounted(() => {
+      getApi()
+    })
+
     return {
       redStatus,
       getStatus
