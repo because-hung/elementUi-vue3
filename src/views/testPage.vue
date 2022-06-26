@@ -1,4 +1,13 @@
 <template>
+<div class="cardTest">
+<div class="card">
+   <div><img src="https://fakeimg.pl/100x100/"><h5>title</h5></div>
+    <div><img src="https://fakeimg.pl/100x100/"><h5>title</h5></div>
+</div>
+<div class="card"><img src="https://fakeimg.pl/100x100/"><h5>title</h5></div>
+<div class="card"><img src="https://fakeimg.pl/100x100/"><h5>title</h5></div>
+</div>
+
   <div v-if='false' class="container">
     <div class="boxGroup">
       <div class="outter">
@@ -10,29 +19,29 @@
       </div>
     </div>
   </div>
-  <div class="outner">
+  <div class="outner" v-if='false'>
     <div class="boxG boxGA"></div>
     <div class="boxG boxGB"></div>
   </div>
-  <ul class="menu">
+  <ul class="menu" v-if='false'>
     <li @click='getStatus(1)'>about<div  v-if='redStatus === 1' class="colbox"></div></li>
     <li @click='getStatus(2)'>home<div  v-if='redStatus === 2' class="colbox"></div></li>
     <li @click='getStatus(3)'>TTT<div  v-if='redStatus === 3' class="colbox"></div></li>
     <li @click='getStatus(4)'>CCC<div  v-if='redStatus === 4' class="colbox"></div></li>
   </ul>
-   <ul class="menu">
+   <ul class="menu" v-if='false'>
     <li @click='getStatus(1)'>about<div  v-if='redStatus === 1' class="colbox"></div></li>
     <li @click='getStatus(2)'>home<div  v-if='redStatus === 2' class="colbox"></div></li>
     <li @click='getStatus(3)'>TTT<div  v-if='redStatus === 3' class="colbox"></div></li>
     <li @click='getStatus(4)'>CCC<div  v-if='redStatus === 4' class="colbox"></div></li>
   </ul>
-   <ul class="menu">
+   <ul class="menu" v-if='false'>
     <li @click='getStatus(1)'>about<div  v-if='redStatus === 1' class="colbox"></div></li>
     <li @click='getStatus(2)'>home<div  v-if='redStatus === 2' class="colbox"></div></li>
     <li @click='getStatus(3)'>TTT<div  v-if='redStatus === 3' class="colbox"></div></li>
     <li @click='getStatus(4)'>CCC<div  v-if='redStatus === 4' class="colbox"></div></li>
   </ul>
-   <ul class="menu">
+   <ul class="menu" v-if='false'>
     <li @click='getStatus(1)'>about<div  v-if='redStatus === 1' class="colbox"></div></li>
     <li @click='getStatus(2)'>home<div  v-if='redStatus === 2' class="colbox"></div></li>
     <li @click='getStatus(3)'>TTT<div  v-if='redStatus === 3' class="colbox"></div></li>
@@ -170,4 +179,23 @@ li {
     height: 80%;
   }
 }
+.cardTest{
+  margin-bottom: 100px;
+}
+.cardTest{
+  max-width: 610px;
+  .card{
+    width: 100%;
+  h5{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    margin: 10px 0px;
+    width: 80%;
+  }
+}
+}
+
 </style>
