@@ -1,4 +1,18 @@
 <template>
+<div class="fontTest">
+  <font-awesome-icon :icon="[ 'fas', 'angles-left' ]" />
+</div>
+<div class="testScroll">
+  <scrolldatepicker
+        placeholder="May 28, 1989"
+        v-model="dateBirth"
+        :theme-color="'#CDCDCD'"
+        :min="'2000-01-01'"
+        :max="'2022-01-01'"
+        :input-class="'vue-date-input'"
+        :input-style="{color:'#333333'}"
+      />
+</div>
 <div class="cardTest">
 <div class="card">
    <div><img src="https://fakeimg.pl/100x100/"><h5>title</h5></div>
@@ -56,10 +70,16 @@
   </ul>
 </template>
 <script>
+// vue-scroll-datepicker-cashbac
+import 'vue-scroll-datepicker-cashbac/assets/scrolldatepicker.scss'
+import scrolldatepicker from 'vue-scroll-datepicker-cashbac/components/Scrolldatepicker'
 import { useStore } from 'vuex'
 import { fetchFakeApi } from '../../api/fakeApi'
 import { reactive, ref, onMounted } from 'vue'
 export default {
+  components: {
+    scrolldatepicker
+  },
   setup () {
     const store = useStore()
     const fakeData = reactive({
@@ -92,6 +112,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 * {
   box-sizing: border-box;
 }
