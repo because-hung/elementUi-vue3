@@ -1,5 +1,5 @@
 <template>
-<div class="timeTest">
+<div class="timeTest" v-if='false'>
   <div class="cc" v-for='(time, i) in timeData.column' :key="i"> <!--日期當頭-->
     <h2>{{time}}</h2>
     <div class="card" v-for='(item, i) in fakeDataTW.column' :key="i">
@@ -7,6 +7,15 @@
       <h3>{{item.id}}</h3>
       <h3>{{item.time}}</h3>
       </template>
+    </div>
+  </div>
+</div>
+<div class="timeTest2">
+  <div class="cc" v-for='(time, i) in timeData.column' :key="i"> <!--日期當頭-->
+    <h2>{{time}}</h2>
+    <div class="card"  v-for='(item, i) in resultData.column[time]' :key="i" > <!-- 比對日期  一樣才顯示-->
+      <h3>{{item.id}}</h3>
+      <h3>{{item.time}}</h3>
     </div>
   </div>
 </div>
@@ -103,6 +112,9 @@ export default {
     const timeData = reactive({
       column: []
     })
+    const resultData = reactive({
+      column: []
+    })
     const redStatus = ref(1)
     function getStatus (value) {
       redStatus.value = value
@@ -139,9 +151,73 @@ export default {
         console.log(timeData)
       })
     }
+
+    function getApiSE () {
+      fetchFakeApiTW().then((res) => {
+        console.log('2', res.data.infos)
+        fakeDataTW.column = res.data.infos
+        fakeDataTW.column.forEach(item => {
+          const ary = item.time.split('')
+          const Tindex = ary.findIndex(item => item === 'T')
+          const ary2 = ary.slice(0, Tindex) // 留日期
+          const ary5 = ary.slice(Tindex + 1) // 留時間
+          console.log(ary5)
+          const ary3 = ary2.join('') // 留日期
+          const ary6 = ary5.join('') // 留時間
+          item.createTime = ary3 // 創造屬性 比對用
+          item.time = ary6
+        })
+        const result = fakeDataTW.column.reduce((acc, cur) => {
+          const ary7 = []
+          const proper = Object.prototype.hasOwnProperty.call(acc, cur.createTime)
+          if (!proper) {
+            ary7.push(cur)
+            acc[cur.createTime] = ary7
+          } else {
+            acc[cur.createTime].push(cur)
+          }
+
+          return acc
+        }, {})
+        resultData.column = result
+        console.log(result)
+        console.log(fakeDataTW.column)
+      })
+    }
+
+    // function getApifour () {
+    //   fetchFakeApiTW().then((res) => {
+    //     console.log('2', res.data.infos)
+    //     fakeDataTW.column = res.data.infos
+    //     fakeDataTW.column.forEach(item => {
+    //       const ary = item.time.split('')
+    //       const Tindex = ary.findIndex(item => item === 'T')
+    //       const ary2 = ary.slice(0, Tindex) // 留日期
+    //       const ary5 = ary.slice(Tindex + 1) // 留時間
+    //       console.log(ary5)
+    //       const ary3 = ary2.join('') // 留日期
+    //       const ary6 = ary5.join('') // 留時間
+    //       item.createTime = ary3 // 創造屬性 比對用
+    //       item.time = ary6
+    //     })
+    //     const result = fakeDataTW.column.reduce((acc, cur) => {
+    //       const time = 'createTime'
+    //       const newkey = cur[time]
+    //       if (!acc[newkey]) {
+    //         acc[newkey] = []
+    //       }
+    //       acc[newkey].push(cur)
+    //       return acc
+    //     }, [])
+    //     resultData.column = result
+    //     console.log(result[20220623][0])
+    //   })
+    // }
     onMounted(() => {
       // getApi()
       getApiTW()
+      getApiSE()
+      // getApifour()
     })
 
     return {
@@ -149,7 +225,8 @@ export default {
       getStatus,
       getApi,
       timeData,
-      fakeDataTW
+      fakeDataTW,
+      resultData
     }
   }
 }
