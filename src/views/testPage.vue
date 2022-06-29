@@ -1,6 +1,17 @@
 <template>
+<div class="timeTest">
+  <div class="cc" v-for='(time, i) in timeData.column' :key="i"> <!--日期當頭-->
+    <h2>{{time}}</h2>
+    <div class="card" v-for='(item, i) in fakeDataTW.column' :key="i">
+      <template v-if='time === item.createTime'>  <!-- 比對日期  一樣才顯示-->
+      <h3>{{item.id}}</h3>
+      <h3>{{item.time}}</h3>
+      </template>
+    </div>
+  </div>
+</div>
 <div class="fontTest">
-  <font-awesome-icon :icon="[ 'fas', 'angles-left' ]" />
+  <font-awesome-icon :icon="[ 'fas', 'angles-left' ]" style="color: red" />
 </div>
 <div class="testScroll">
   <scrolldatepicker
@@ -75,6 +86,7 @@ import 'vue-scroll-datepicker-cashbac/assets/scrolldatepicker.scss'
 import scrolldatepicker from 'vue-scroll-datepicker-cashbac/components/Scrolldatepicker'
 import { useStore } from 'vuex'
 import { fetchFakeApi } from '../../api/fakeApi'
+import { fetchFakeApiTW } from '../../api/fakeApi2'
 import { reactive, ref, onMounted } from 'vue'
 export default {
   components: {
@@ -85,26 +97,59 @@ export default {
     const fakeData = reactive({
       column: []
     })
+    const fakeDataTW = reactive({
+      column: []
+    })
+    const timeData = reactive({
+      column: []
+    })
     const redStatus = ref(1)
     function getStatus (value) {
       redStatus.value = value
     }
     function getApi () {
       fetchFakeApi().then((res) => {
-        console.log(res.data.infos)
+        // console.log(res.data.infos)
         fakeData.column = res.data.infos
         fakeData.column.reverse()
         const firstNum = res.data.infos[0]
         store.commit('SETDATA', firstNum)
       })
     }
+
+    function getApiTW () {
+      const ary4 = new Set()
+      fetchFakeApiTW().then((res) => {
+        console.log('2', res.data.infos)
+        fakeDataTW.column = res.data.infos
+        fakeDataTW.column.forEach(item => {
+          const ary = item.time.split('')
+          const Tindex = ary.findIndex(item => item === 'T')
+          const ary2 = ary.slice(0, Tindex) // 留日期
+          const ary5 = ary.slice(Tindex + 1) // 留時間
+          console.log(ary5)
+          const ary3 = ary2.join('') // 留日期
+          const ary6 = ary5.join('') // 留時間
+          item.createTime = ary3 // 創造屬性 比對用
+          item.time = ary6
+          ary4.add(ary3) // 創造集合 (不重複加入)
+        })
+        timeData.column = [...ary4] // 集合(obj)轉陣列
+        console.log(fakeDataTW.column)
+        console.log(timeData)
+      })
+    }
     onMounted(() => {
-      getApi()
+      // getApi()
+      getApiTW()
     })
 
     return {
       redStatus,
-      getStatus
+      getStatus,
+      getApi,
+      timeData,
+      fakeDataTW
     }
   }
 }
