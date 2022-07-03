@@ -17,6 +17,7 @@
     "element-plus": "^2.2.6",
     "lodash": "^4.17.21",
     "vue": "^3.2.13",
+    "vue-cli-plugin-pug": "^2.0.0",
     "vue-router": "^4.0.3",
     "vue-scroll-datepicker-cashbac": "^1.0.9",
     "vue-scroll-picker": "^1.1.1",

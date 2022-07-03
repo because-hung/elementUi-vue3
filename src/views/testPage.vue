@@ -24,14 +24,10 @@
 </div>
 <div class="testScroll">
   <scrolldatepicker
-        placeholder="May 28, 1989"
-        v-model="dateBirth"
+        v-model="dd"
         :theme-color="'#CDCDCD'"
-        :min="'2000-01-01'"
-        :max="'2022-01-01'"
-        :input-class="'vue-date-input'"
-        :input-style="{color:'#333333'}"
       />
+      <h2>123{{dd}}</h2>
 </div>
 <div class="cardTest">
 <div class="card">
@@ -128,62 +124,63 @@ export default {
         store.commit('SETDATA', firstNum)
       })
     }
+    const dd = ref('')
 
-    function getApiTW () {
-      const ary4 = new Set()
-      fetchFakeApiTW().then((res) => {
-        console.log('2', res.data.infos)
-        fakeDataTW.column = res.data.infos
-        fakeDataTW.column.forEach(item => {
-          const ary = item.time.split('')
-          const Tindex = ary.findIndex(item => item === 'T')
-          const ary2 = ary.slice(0, Tindex) // 留日期
-          const ary5 = ary.slice(Tindex + 1) // 留時間
-          console.log(ary5)
-          const ary3 = ary2.join('') // 留日期
-          const ary6 = ary5.join('') // 留時間
-          item.createTime = ary3 // 創造屬性 比對用
-          item.time = ary6
-          ary4.add(ary3) // 創造集合 (不重複加入)
-        })
-        timeData.column = [...ary4] // 集合(obj)轉陣列
-        console.log(fakeDataTW.column)
-        console.log(timeData)
-      })
-    }
+    // function getApiTW () {
+    //   const ary4 = new Set()
+    //   fetchFakeApiTW().then((res) => {
+    //     console.log('2', res.data.infos)
+    //     fakeDataTW.column = res.data.infos
+    //     fakeDataTW.column.forEach(item => {
+    //       const ary = item.time.split('')
+    //       const Tindex = ary.findIndex(item => item === 'T')
+    //       const ary2 = ary.slice(0, Tindex) // 留日期
+    //       const ary5 = ary.slice(Tindex + 1) // 留時間
+    //       console.log(ary5)
+    //       const ary3 = ary2.join('') // 留日期
+    //       const ary6 = ary5.join('') // 留時間
+    //       item.createTime = ary3 // 創造屬性 比對用
+    //       item.time = ary6
+    //       ary4.add(ary3) // 創造集合 (不重複加入)
+    //     })
+    //     timeData.column = [...ary4] // 集合(obj)轉陣列
+    //     console.log(fakeDataTW.column)
+    //     console.log(timeData)
+    //   })
+    // }
 
-    function getApiSE () {
-      fetchFakeApiTW().then((res) => {
-        console.log('2', res.data.infos)
-        fakeDataTW.column = res.data.infos
-        fakeDataTW.column.forEach(item => {
-          const ary = item.time.split('')
-          const Tindex = ary.findIndex(item => item === 'T')
-          const ary2 = ary.slice(0, Tindex) // 留日期
-          const ary5 = ary.slice(Tindex + 1) // 留時間
-          console.log(ary5)
-          const ary3 = ary2.join('') // 留日期
-          const ary6 = ary5.join('') // 留時間
-          item.createTime = ary3 // 創造屬性 比對用
-          item.time = ary6
-        })
-        const result = fakeDataTW.column.reduce((acc, cur) => {
-          const ary7 = []
-          const proper = Object.prototype.hasOwnProperty.call(acc, cur.createTime)
-          if (!proper) {
-            ary7.push(cur)
-            acc[cur.createTime] = ary7
-          } else {
-            acc[cur.createTime].push(cur)
-          }
+    // function getApiSE () {
+    //   fetchFakeApiTW().then((res) => {
+    //     console.log('2', res.data.infos)
+    //     fakeDataTW.column = res.data.infos
+    //     fakeDataTW.column.forEach(item => {
+    //       const ary = item.time.split('')
+    //       const Tindex = ary.findIndex(item => item === 'T')
+    //       const ary2 = ary.slice(0, Tindex) // 留日期
+    //       const ary5 = ary.slice(Tindex + 1) // 留時間
+    //       console.log(ary5)
+    //       const ary3 = ary2.join('') // 留日期
+    //       const ary6 = ary5.join('') // 留時間
+    //       item.createTime = ary3 // 創造屬性 比對用
+    //       item.time = ary6
+    //     })
+    //     const result = fakeDataTW.column.reduce((acc, cur) => {
+    //       const ary7 = []
+    //       const proper = Object.prototype.hasOwnProperty.call(acc, cur.createTime)
+    //       if (!proper) {
+    //         ary7.push(cur)
+    //         acc[cur.createTime] = ary7
+    //       } else {
+    //         acc[cur.createTime].push(cur)
+    //       }
 
-          return acc
-        }, {})
-        resultData.column = result
-        console.log(result)
-        console.log(fakeDataTW.column)
-      })
-    }
+    //       return acc
+    //     }, {})
+    //     resultData.column = result
+    //     console.log(result)
+    //     console.log(fakeDataTW.column)
+    //   })
+    // }
 
     // function getApifour () {
     //   fetchFakeApiTW().then((res) => {
@@ -210,13 +207,13 @@ export default {
     //       return acc
     //     }, [])
     //     resultData.column = result
-    //     console.log(result[20220623][0])
+    //     console.log(result)
     //   })
     // }
     onMounted(() => {
       // getApi()
-      getApiTW()
-      getApiSE()
+      // getApiTW()
+      // getApiSE()
       // getApifour()
     })
 
@@ -226,7 +223,9 @@ export default {
       getApi,
       timeData,
       fakeDataTW,
-      resultData
+      resultData,
+      fetchFakeApiTW,
+      dd
     }
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+
     <button class="job" @click="setID(1)">管理員</button>
     <button class="job" @click="setID(2)">客服</button>
     <button class="job" @click="setID(3)">班長</button>
@@ -210,7 +211,7 @@ export default {
       getApi()
     })
     function goTestPage () {
-      router.push('./testPage')
+      router.push('./testPageTW')
     }
     function setID (value) {
       console.log(value)
