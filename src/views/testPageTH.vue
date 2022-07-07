@@ -3,8 +3,12 @@
         <div class="agent-block">
             <img src="../assets/banner.png" alt="">
             <div class="btnGroup">
-                <a href="google.com" class="hoverBtn skypeIcon"><img src="../assets/icon01.png" alt=""><div class="iconTitle">skype</div></a>
-                <a href="youtube.com" class="hoverBtn tgIcon"><img src="../assets/icon02.png" alt=""><div class="iconTitle tgTitle">合營tg</div></a>
+                <div class="btnIcon skypeIcon">
+                <a href="" class="hoverStatus"><img src="../assets/icon01.png" alt=""><div class="iconTitle">skype</div></a>
+                </div>
+                <div class="btnIcon tgIcon">
+                <a href="" class="hoverStatus"><img src="../assets/icon02.png" alt=""><div class="iconTitle tgTitle">tg</div></a>
+                </div>
                  <button class="join-us-btn">
                 <img src="../assets/btn.jpg" alt="">
                 </button>
@@ -41,23 +45,23 @@ export default {
     width: 65%;
 }
 
-.hoverBtn{
+.btnIcon{
     background: white;
     opacity: 0.7;
-    padding: 10px;
+    border: 0px;
+    padding: 20px;
+    margin: 0px 30px;
     cursor: pointer;
     border-radius: 10px;
-    margin-right: 30px;
-    text-decoration: none
+    width: 100px;
 }
-
-.hoverBtn:hover{
-    opacity: 1;
+.tgIcon .hoverStatus{
+    padding: 20px;
 }
 .skypeIcon{
     width: 2vw;
 }
-.skypeIcon > a{
+.skypeIcon .hoverStatus{
     text-decoration: none;
     padding: 20px;
 }
@@ -70,6 +74,9 @@ export default {
 .tgIcon{
     width: 2vw;
 }
+.tgIcon > a{
+    text-decoration: none;
+}
 
 /* .tgtitle{
     transform: translateY(-8px);
@@ -77,5 +84,7 @@ export default {
 
 .btnGroup .join-us-btn{
     width: 11vw;
+    background: transparent;
+    opacity: 1;
 }
 </style>
