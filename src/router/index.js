@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import testPage from '../views/testPage.vue'
 import testPageTW from '../views/testPageTW.vue'
+import testPageTH from '../views/testPageTH.vue'
 
 const routes = [
   {
@@ -24,6 +25,25 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: testPage
+    // beforeEnter: (to, from) => {
+    //   const toke = JSON.parse(localStorage.getItem('agentID'))
+    //   console.log('agentO', toke)
+    //   // reject the navigation
+    //   if (toke === 1) {
+    //     return true
+    //   } else {
+    //     console.log('error')
+    //     return false
+    //   }
+    // }
+  },
+  {
+    path: '/testPageTH',
+    name: 'testPageTH',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: testPageTH
     // beforeEnter: (to, from) => {
     //   const toke = JSON.parse(localStorage.getItem('agentID'))
     //   console.log('agentO', toke)

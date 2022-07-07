@@ -211,7 +211,7 @@ export default {
       getApi()
     })
     function goTestPage () {
-      router.push('./testPageTW')
+      router.push('./testPageTH')
     }
     function setID (value) {
       console.log(value)

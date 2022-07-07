@@ -8,12 +8,21 @@
     button.one enter
     button.sec log
     button.thir logOut
+el-button.diaBtn(@click='getDialogVisble()') enter
+el-dialog.dialog(title='title' v-model="DialogVisble"  width="30%")
+  span 666
 </template>
 <script>
+import { ref } from 'vue'
 export default {
   setup () {
+    const DialogVisble = ref(false)
+    function getDialogVisble () {
+      DialogVisble.value = true
+    }
     return {
-
+      getDialogVisble,
+      DialogVisble
     }
   }
 }
@@ -50,4 +59,12 @@ export default {
       grid-column: 2/3
     .thir
       grid-column: 1/2
+  .diaBtn
+    margin-top: 50px
+    width: 100px
+    height: 100px
+  .dialog
+    width: 500px
+    height: 500px
+    background: red
 </style>
