@@ -1,6 +1,8 @@
 <template lang="pug">
 .containerA
-  .testContent
+  .testcont
+    span 123
+  .testContent( v-if='false' @mouseover='changeColor()' @mouseleave='changeColorV()')
     img.posit(src='../assets/btn.jpg')
     .logoA
       img(src='../assets/btn.jpg')
@@ -26,10 +28,41 @@
 
 </template>
 <script>
+import _ from 'lodash'
 export default {
+  setup () {
+    // function changeColor (val) {
+    //   const debo = _.debounce(function () {
+    //     const domA = document.querySelector('.testContent')
+    //     domA.style.backgroundColor = 'red'
+    //     console.log('red')
+    //   }, 300)
+    //   debo()
+    // }
+    const thro = _.throttle(function () {
+      const domA = document.querySelector('.testContent')
+      domA.style.backgroundColor = 'red'
+      console.log('red')
+    }, 600, { trailing: false })
+
+    function changeColor () {
+      thro()
+    }
+
+    function changeColorV () {
+      const domA = document.querySelector('.testContent')
+      domA.style.backgroundColor = 'white'
+      console.log('white')
+    }
+    return {
+      changeColor,
+      changeColorV
+    }
+  }
 }
 </script>
-<style lang='sass' scoped>
+<style lang="sass" scoped>
+
 .containerA
   border: 2px black solid
   height: 500px
@@ -37,6 +70,20 @@ export default {
   display: flex
   justify-content: center
   align-items: center
+  .testcont
+    width: 50%
+    height: 250px
+    background: red
+    position: relative
+    span
+      color: white
+      font-size: 24px
+      display: inline-flex
+      width: 150px
+      height: 30px
+      position: absolute
+      top: 20px
+      left: 100px
   .testContent
     width: 35%
     background: white
@@ -98,5 +145,4 @@ export default {
       height: 300px
       border-radius: 10px
       transform: translateX(4px)
-
 </style>
