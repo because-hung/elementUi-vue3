@@ -1,8 +1,10 @@
 <template lang="pug">
+.toBox
 .containerA
-  .testcont
+  .testImg(v-if='false') 好的條件
+  .testcont(v-if='false')
     span 123
-  .testContent( v-if='false' @mouseover='changeColor()' @mouseleave='changeColorV()')
+  .testContent( @mouseover='changeColor()' @mouseleave='changeColorV()')
     img.posit(src='../assets/btn.jpg')
     .logoA
       img(src='../assets/btn.jpg')
@@ -62,7 +64,11 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-
+@import '../sass/tovw'
+.toBox
+  width: tovw(50)
+  height: tovw(50)
+  background: #000
 .containerA
   border: 2px black solid
   height: 500px
@@ -70,6 +76,12 @@ export default {
   display: flex
   justify-content: center
   align-items: center
+  .testImg
+    background-image: url('../assets/btn.jpg')
+    width: 150px
+    height: 60px
+    background-size: cover
+    line-height: 60px
   .testcont
     width: 50%
     height: 250px
@@ -104,9 +116,16 @@ export default {
       display: flex
       justify-content: center
       .contA
-        // border-right: gray solid 3px
         padding-right: 10px
+        h2
+          margin: 0px
+          margin-top: 20px
+          padding-bottom: 10px
+          padding-right: 5px
+          border-right: gray solid 3px
         .infoGroup
+          padding-right: 5px
+          border-right: gray solid 3px
           display: flex
           justify-content: center
           .card
