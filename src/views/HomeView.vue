@@ -93,6 +93,7 @@
           :label="col.label"
           :min-width="col.width"
           :align="col.align"
+          show-overflow-tooltip
         >
           <template v-slot="slotProps">
             <p
@@ -154,7 +155,7 @@ export default {
     const totalCount = ref(0)
     const cols = reactive([
       { prop: 'id', label: '序', width: '40', align: 'center' },
-      { prop: 'knowledge', label: '調整項目', width: '100', align: 'center' },
+      { prop: 'knowledge', label: '調整項目 testforlengthtext', width: '100', align: 'center' },
       { prop: 'operate', label: '動作', width: '100', align: 'center' },
       { prop: 'content', label: '內容', width: '150', align: 'left' },
       { prop: 'account', label: '操作者', width: '100', align: 'center' },
@@ -295,6 +296,15 @@ header {
   margin-top: 20px;
   // overflow-x: auto; ele ui 原本就有
 }
+
+:deep(.cell p) {
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+// ::v-deep .appd {
+//   color: pink;
+// }
 :deep(.appd) {
   color: red;
 }

@@ -79,7 +79,7 @@ export const fetchFakeApi = () => {
             id: 9,
             content: '新增 <span class="appd"> aaaa 006 </span> <br/> 新增 <span class="appX"> [000999] </span>',
             operate: '新增',
-            knowledge: '新增用戶',
+            knowledge: '新增用戶 testlength 測試長度長度測試長度長度',
             account: 'admin',
             time: '201314123',
             ip: '120.19.20.8'

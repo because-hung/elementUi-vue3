@@ -41,6 +41,11 @@ export default {
     //   }, 300)
     //   debo()
     // }
+    const array = [1, 2, 3, 4, 5, 6]
+
+    const res = _.chain(array).filter(i => i > 6).value()
+    console.log(res)
+
     const thro = _.throttle(function () {
       const domA = document.querySelector('.testContent')
       domA.style.backgroundColor = 'red'
