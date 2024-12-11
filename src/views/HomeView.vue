@@ -1,6 +1,16 @@
 <template>
   <div class="home">
-
+    <input type="text" v-model="form.depositDayLimit">
+    <div style="margin-bottom: 10px"></div>
+    <input type="text" v-model="form.depositSingleLimit">
+    <div style="margin-bottom: 10px"></div>
+    <input type="text" v-model="form.withdrawDayLimit">
+    <div style="margin-bottom: 10px"></div>
+    <input type="text" v-model="form.withdrawSingleLimit">
+    <div style="margin-bottom: 10px"></div>
+    <button @click="compare()">compare</button>
+    <div style="margin-bottom: 15px"></div>
+    <br>
     <button class="job" @click="setID(1)">管理員</button>
     <button class="job" @click="setID(2)">客服</button>
     <button class="job" @click="setID(3)">班長</button>
@@ -132,6 +142,29 @@ export default {
     // function cellStyle ({ row, column, rowIndex, columnIndex }) {
     //   return 'customClass'
     // }
+    const form = ref({
+      depositDayLimit: '',
+      depositSingleLimit: '',
+      withdrawDayLimit: '',
+      withdrawSingleLimit: ''
+    })
+
+    const compare = () => {
+      const { depositDayLimit, depositSingleLimit, withdrawDayLimit, withdrawSingleLimit } = form.value
+      if (depositSingleLimit > depositDayLimit) {
+        console.log('deposit error')
+      }
+      console.log('depositDayLimit', depositDayLimit)
+      console.log('depositSingleLimit', depositSingleLimit)
+      console.log('deposit error result', depositSingleLimit > depositDayLimit)
+
+      if (withdrawSingleLimit > withdrawDayLimit) {
+        console.log('withdraw error')
+      }
+      console.log('withdrawDayLimit', withdrawDayLimit)
+      console.log('withdrawSingleLimit', withdrawSingleLimit)
+      console.log('withdraw error result', withdrawSingleLimit > withdrawDayLimit)
+    }
     const store = useStore()
     const router = useRouter()
     const timeNow = new Date(Date.now())
@@ -237,7 +270,9 @@ export default {
       dateValue2,
       goTestPage,
       setID,
-      store
+      store,
+      form,
+      compare
     }
   }
 }
