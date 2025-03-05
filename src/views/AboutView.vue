@@ -12,7 +12,8 @@ export default {
   name: 'aboutView',
   setup () {
     const content = `
-    <p>"As Chiang becomes more refined through life, the glistens of time, like fine nectar after a long period of brewing, also flow between life and art in a freer way--whether the light within his heart or</p>`
+    <p>336 <br/>
+      "As Chiang becomes more refined through life, the glistens of time, like fine nectar after a long period of brewing, also flow between life and art in a freer way--whether the light within his heart or</p>`
     return {
       content
     }
@@ -25,7 +26,6 @@ export default {
   .content{
     margin: 0 auto;
     width: 300px;
-    height: 100px;
     border: 1px solid black;
 
     // text-overflow
